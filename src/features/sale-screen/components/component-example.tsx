@@ -5,7 +5,7 @@ import * as React from "react";
 import {
   Example,
   ExampleWrapper,
-} from "@/features/dashboard/components/example";
+} from "@/features/sale-screen/components/example";
 import {
   AlertDialog,
   AlertDialogAction,
