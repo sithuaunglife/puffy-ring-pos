@@ -1,7 +1,12 @@
 "use client";
 
-import { ComponentExample } from "@/features/sale-screen/components/component-example";
+import ModuleLinkList from "@/features/dashboard/Components/ModuleLinkList";
+
 
 export default function Page() {
-  return <ComponentExample />;
+  return (
+    <div>
+      <ModuleLinkList />
+    </div>
+  );
 }

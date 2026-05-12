@@ -1,96 +1,96 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
-  ShoppingCart,
-  UserCircle,
   Utensils,
   ChartBarStacked,
-  Users,
+  Donut,
+  UserPenIcon,
+  Users2,
   Receipt,
-  Settings,
+  ClipboardMinus,
 } from "lucide-react";
-import ModuleLink from "./ModuleLink";
 
 function ModuleLinkList() {
+  const pathname = usePathname();
+
   const moduleLinks = [
     {
-      groupTitle: "Sale Module",
       modules: [
         {
-          icon: <ShoppingCart />,
-          title: "Sale",
-          href: "/dashboard/sale?limit=100",
+          icon: <Donut size={18} />,
+          title: "Sale Screen",
+          href: "/sale-screen",
         },
         {
-          icon: <Receipt />,
-          title: "Sale Voucher",
-          href: "/dashboard/sale-voucher",
+          icon: <UserPenIcon size={18} />,
+          title: "Profile",
+          href: "/profile",
         },
         {
-          icon: <Receipt />,
-          title: "Banner",
-          href: "/dashboard/banner-management",
-        },
-      ],
-    },
-    {
-      groupTitle: "Management",
-      modules: [
-        {
-          icon: <ChartBarStacked />,
-          title: "Category",
-          href: "/dashboard/categories",
-        },
-        {
-          icon: <Utensils />,
-          title: "Menu",
-          href: "/dashboard/menus",
-        },
-        {
-          icon: <Users />,
+          icon: <Users2 size={18} />,
           title: "Customers",
-          href: "/dashboard/customers",
+          href: "/customers",
         },
-      ],
-    },
-    {
-      groupTitle: "User Information",
-      modules: [
         {
-          icon: <UserCircle />,
-          title: "Profile  Information",
-          href: "/dashboard/profile-information",
+          icon: <ChartBarStacked size={18} />,
+          title: "Category",
+          href: "/categories",
         },
-      ],
-    },
-    {
-      groupTitle: "Setting",
-      modules: [
         {
-          icon: <Settings />,
-          title: "Setting",
-          href: "/dashboard/setting",
+          icon: <Utensils size={18} />,
+          title: "Menu",
+          href: "/menus",
+        },
+        {
+          icon: <Receipt size={18} />,
+          title: "Sale Voucher",
+          href: "/vouchers",
+        },
+        {
+          icon: <ClipboardMinus size={18} />,
+          title: "Dual Screen",
+          href: "/dual-screen",
         },
       ],
     },
   ];
 
   return (
-    <section className=" flex flex-col gap-8 container mx-auto">
-      {moduleLinks.map(({ groupTitle, modules }, index) => (
-        <div key={`module-group-${index}`}>
-          <h4 className=" mb-3">{groupTitle}</h4>
-          <div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {modules.map(({ icon, title, href }, index) => (
-              <ModuleLink
-                key={`module-link-${index}`}
-                icon={icon}
-                title={title}
-                href={href}
-              />
-            ))}
+    <div className="w-[260px] min-h-screen border-r bg-background px-4 py-6">
+      <div className="flex flex-col gap-8">
+        {moduleLinks.map(({ modules }, index) => (
+          <div key={`module-group-${index}`}>
+            <div className="flex flex-col gap-1">
+              {modules.map(({ icon, title, href }, index) => {
+                const isActive = pathname.startsWith(href.split("?")[0]);
+
+                return (
+                  <Link
+                    key={`module-link-${index}`}
+                    href={href}
+                    className={`
+                      flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all
+                      hover:bg-muted
+                      ${
+                        isActive
+                          ? "bg-gradient-to-r from-pink-500 to-white font-medium text-foreground"
+                          : "text-muted-foreground"
+                      }
+                    `}
+                  >
+                    {icon}
+
+                    <span>{title}</span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
-    </section>
+        ))}
+      </div>
+    </div>
   );
 }
 
