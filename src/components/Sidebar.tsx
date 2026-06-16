@@ -12,44 +12,44 @@ import {
   ClipboardMinus,
 } from "lucide-react";
 
-function ModuleLinkList() {
+function Sidebar() {
   const pathname = usePathname();
 
   const moduleLinks = [
     {
       modules: [
         {
-          icon: <Donut size={18} />,
+          icon: <Donut size={24} />,
           title: "Sale Screen",
           href: "/sale-screen",
         },
         {
-          icon: <UserPenIcon size={18} />,
+          icon: <UserPenIcon size={24} />,
           title: "Profile",
           href: "/profile",
         },
         {
-          icon: <Users2 size={18} />,
+          icon: <Users2 size={24} />,
           title: "Customers",
           href: "/customers",
         },
         {
-          icon: <ChartBarStacked size={18} />,
+          icon: <ChartBarStacked size={24} />,
           title: "Category",
           href: "/categories",
         },
         {
-          icon: <Utensils size={18} />,
+          icon: <Utensils size={24} />,
           title: "Menu",
           href: "/menus",
         },
         {
-          icon: <Receipt size={18} />,
+          icon: <Receipt size={24} />,
           title: "Sale Voucher",
           href: "/vouchers",
         },
         {
-          icon: <ClipboardMinus size={18} />,
+          icon: <ClipboardMinus size={24} />,
           title: "Dual Screen",
           href: "/dual-screen",
         },
@@ -58,11 +58,11 @@ function ModuleLinkList() {
   ];
 
   return (
-    <div className="w-[260px] min-h-screen border-r bg-background px-4 py-6">
+    <div className="w-[260px] min-h-screen border-r bg-background px-4">
       <div className="flex flex-col gap-8">
         {moduleLinks.map(({ modules }, index) => (
           <div key={`module-group-${index}`}>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
               {modules.map(({ icon, title, href }, index) => {
                 const isActive = pathname.startsWith(href.split("?")[0]);
 
@@ -70,18 +70,17 @@ function ModuleLinkList() {
                   <Link
                     key={`module-link-${index}`}
                     href={href}
-                    className={`
-                      flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all
-                      hover:bg-muted
-                      ${
-                        isActive
-                          ? "bg-gradient-to-r from-pink-500 to-white font-medium text-foreground"
-                          : "text-muted-foreground"
-                      }
-                    `}
+                    className={`relative -mx-5
+                  flex items-center gap-3 px-5 py-6 text-sm transition-all
+               hover:bg-stone-100
+            ${
+              isActive
+                ? "bg-gradient-to-r from-pink-500 via-pink-100 to-white font-medium text-foreground"
+                : "text-muted-foreground"
+            }
+                  `}
                   >
                     {icon}
-
                     <span>{title}</span>
                   </Link>
                 );
@@ -94,4 +93,4 @@ function ModuleLinkList() {
   );
 }
 
-export default ModuleLinkList;
+export default Sidebar;
