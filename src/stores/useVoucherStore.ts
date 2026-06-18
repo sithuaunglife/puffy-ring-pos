@@ -5,7 +5,7 @@ import { persist } from "zustand/middleware";
 
 const useVoucherStore = create(
   persist(
-    (set, get) => ({
+    (set) => ({
       items: [], // id: Date.now(), product: { id, title, price }, quantity: 1, It is stored here
       hasHydrated: false,
       setHasHydrated: (state) => {
