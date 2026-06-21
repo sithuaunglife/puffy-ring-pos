@@ -37,12 +37,18 @@ const useCategoryStore = create<CategoryState>()(
         ],
         activeCategory: "All",
 
-        addCategory: (newCategory) =>
+        addCategory: (
+          newCategory, // This is outer function
+        ) =>
           set((oldState) => ({
+            // This is inner function
             categories: [...oldState.categories, newCategory],
+            // Inner function can access:
+            // oldState (its own parameter)
+            // newCategory (outer parameter)
           })),
 
-        selectCategory: (newCategory) => set({ activeCategory: newCategory }),
+        selectCategory: (newCategory) => set({ activeCategory: newCategory }), // newCategory parameter from both the add Category and Select Category are not same
       };
     },
     {
