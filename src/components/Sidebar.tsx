@@ -46,7 +46,7 @@ function Sidebar() {
         {
           icon: <Receipt size={24} />,
           title: "Sale Voucher",
-          href: "/vouchers",
+          href: "/sale-voucher",
         },
         {
           icon: <ClipboardMinus size={24} />,
