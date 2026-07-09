@@ -14,6 +14,10 @@ type CategoryState = {
   addCategory: (newCategory: CategoryDetailType) => void;
 
   selectCategory: (newCategory: string) => void;
+
+  editCategory: (id: number, title: string) => void;
+
+  deleteCategory: (id: number) => void;
 };
 
 const useCategoryStore = create<CategoryState>()(
@@ -35,8 +39,9 @@ const useCategoryStore = create<CategoryState>()(
           { id: 3, title: "Coffee" },
           { id: 4, title: "Smoothie" },
         ],
-        activeCategory: "All",
 
+        // Implementation of add Category
+        // [...] spread oldState to categories making a new array of Category
         addCategory: (
           newCategory, // This is outer function
         ) =>
@@ -48,13 +53,45 @@ const useCategoryStore = create<CategoryState>()(
             // newCategory (outer parameter)
           })),
 
-        selectCategory: (newCategory) => set({ activeCategory: newCategory }), // newCategory parameter from both the add Category and Select Category are not same
-      };
-    },
+        // Implementation of editCategory
+        // Goal: Edit only the category title
+
+        // 1. Create an editCategory function.
+        // 2. Use set() to update the Zustand state.
+        // 3. Use map() to create a new array (React/Zustand use immutable updates).
+        // 4. Check if the current category's id matches the function parameter id.
+        // 5. If it matches, spread the existing category and overwrite the title.
+        // 6. Otherwise, return the original category unchanged.
+
+        editCategory: (id, title) =>
+          set((state) => ({
+            // set is used here to set the state of categories. It is similar to setState from react
+            categories: state.categories.map(
+              (
+                category, // map is used here to return the new array since react use immutable way
+              ) => (category.id === id ? { ...category, title } : category), // category.id === id is if the id of category match the id of editCategory parameter. {...category, title} spreads the old category and change the title
+            ),
+          })),
+
+
+        // Problem
+        // Delete the category
+
+        // Steps
+        // set the category first
+        // filter the category
+        // If category.id is not same as parameter id remove it
+
+        deleteCategory: (id) => set((state)=> ({
+            categories: state.categories.filter((category) => category.id !== id ),
+        })),
+
+        }
+      },
     {
       name: "category-storage",
       onRehydrateStorage: () => (state) => {
-        state?.setHasHydrated(true); 
+        state?.setHasHydrated(true);
         // checking if there is data for state?.
       },
     },
