@@ -1,5 +1,6 @@
 import { Suspense } from "react";
-import CategoryGrid from "./CategoryGrid";
+import CategoryGrid from "./CategoryTable";
+import CategoryTable from "./CategoryTable";
 
 function CategoryListSection() {
   return (
@@ -8,7 +9,7 @@ function CategoryListSection() {
         <h3 className=" text-xl font-semibold mb-9">Category List</h3>
       </div>
       <Suspense>
-        <CategoryGrid />
+        <CategoryTable />
       </Suspense>
     </section>
   );

@@ -42,16 +42,16 @@ const useCategoryStore = create<CategoryState>()(
 
         // Implementation of add Category
         // [...] spread oldState to categories making a new array of Category
-        addCategory: (
-          newCategory, // This is outer function
-        ) =>
-          set((oldState) => ({
-            // This is inner function
-            categories: [...oldState.categories, newCategory],
-            // Inner function can access:
-            // oldState (its own parameter)
-            // newCategory (outer parameter)
-          })),
+        // addCategory: (
+        //   newCategory, // This is outer function
+        // ) =>
+        //   set((oldState) => ({
+        //     // This is inner function
+        //     categories: [...oldState.categories, newCategory],
+        //     // Inner function can access:
+        //     // oldState (its own parameter)
+        //     // newCategory (outer parameter)
+        //   })),
 
         // Implementation of editCategory
         // Goal: Edit only the category title
@@ -85,6 +85,18 @@ const useCategoryStore = create<CategoryState>()(
         deleteCategory: (id) => set((state)=> ({
             categories: state.categories.filter((category) => category.id !== id ),
         })),
+
+        // Problem
+        // Add the category
+
+        // Steps
+        // create the addCategory function
+        // set the state first
+        // Spread the category of array and add newCategory
+        // make sure the category id match the parameter id
+        // return the category
+
+        addCategory: (newCategory) => set((state)=> ({categories: [...state.categories, newCategory],})),
 
         }
       },

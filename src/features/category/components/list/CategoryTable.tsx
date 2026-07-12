@@ -12,7 +12,7 @@ type Props = {
   category: CategoryDetailType;
 };
 
-function CategoryGrid() {
+function CategoryTable() {
   const { categories, hasHydrated, editCategory, deleteCategory } =
     useCategoryStore();
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -41,7 +41,7 @@ function CategoryGrid() {
       <div className="flex gap-25">
         {/* Add New */}
         <Link
-          href="/dashboard/categories/create"
+          href="/categories/create"
           className="flex flex-col items-center gap-2 shrink-0"
         >
           <Card className="flex h-40 w-40 items-center justify-center border-2 border-dashed bg-transparent shadow-none hover:border-pink-500">
@@ -127,4 +127,4 @@ function CategoryGrid() {
   );
 }
 
-export default CategoryGrid;
+export default CategoryTable;
