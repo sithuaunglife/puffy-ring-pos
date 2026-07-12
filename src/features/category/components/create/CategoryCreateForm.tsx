@@ -45,7 +45,7 @@ function CategoryCreateForm() {
               <Field data-invalid={fieldState.invalid}>
                 <div className="flex items-center gap-2">
                   <Checkbox
-                    className="border border-slate-900 cursor-pointer"
+                    className="border border-slate-900 cursor-pointer data-checked:bg-pink-500"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                     id="confirm-check"
