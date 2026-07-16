@@ -24,8 +24,8 @@ function Header({ links = [], currentPage }: Props) {
       <Image
         src="/puffyRing.png"
         alt="Puffy Ring Logo"
-        width={75}
-        height={60}
+        width={113}
+        height={97}
       />
 
       <div className="container py-2 mx-auto flex justify-end items-center">
