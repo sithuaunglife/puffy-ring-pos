@@ -7,16 +7,16 @@ import { Button } from "@base-ui/react";
 import { Edit, Pencil, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import CategoryDeleteBtn from "../delete/CategoryDeleteBtn";
 
 type Props = {
   category: CategoryDetailType;
 };
 
-function CategoryTable() {
-  const { categories, hasHydrated, editCategory, deleteCategory } =
+const CategoryTable = () => {
+  const { categories, hasHydrated, editCategory, } =
     useCategoryStore();
   const [editingId, setEditingId] = useState<number | null>(null);
-  const [deleteId, setDeleteId] = useState<number | null>(null);
   const [editingTitle, setEditingTitle] = useState("");
 
   const handleSave = () => {
@@ -113,11 +113,8 @@ function CategoryTable() {
                 {/* make state for id and title since it need to re-render */}
                 {/* delete icon is to trigger the state */}
                 {/* Write onClick logic supply by zustand to use the edit category logic */}
-                <Trash2
-                  onClick={() => {
-                    deleteCategory(category.id);
-                  }}
-                />
+                <CategoryDeleteBtn id={category.id} /> 
+                {/* Passing Prop to child  */}
               </div>
             </div>
           ))}
