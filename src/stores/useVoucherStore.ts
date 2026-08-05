@@ -8,11 +8,10 @@ const useVoucherStore = create(
     (set) => ({
       items: [], // id: Date.now(), product: { id, title, price }, quantity: 1, It is stored here
       hasHydrated: false,
-      setHasHydrated: (state) => {
+      setHasHydrated: (state) =>
         set({
           hasHydrated: state,
-        });
-      },
+        }),
       addItem: (newItem) =>
         set((state) => ({ items: [...state.items, newItem] })),
       updateQuantity: (id, amount) =>
