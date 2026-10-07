@@ -1,4 +1,4 @@
-import { generateVoucherId } from "@/utils/voucher";
+import { generateVoucherId } from "@/lib/utils";
 import dayjs from "dayjs";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";

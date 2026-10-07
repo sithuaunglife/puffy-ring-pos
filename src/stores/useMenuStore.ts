@@ -2,7 +2,7 @@ import React from "react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const useProductStore = create(
+const useMenuStore = create(
   persist(
     (set, get) => ({
       hasHydrated: false,
@@ -274,4 +274,4 @@ const useProductStore = create(
   ),
 );
 
-export default useProductStore;
+export default useMenuStore;

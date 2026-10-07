@@ -20,7 +20,7 @@ function Header({ links = [], currentPage }: Props) {
   const router = useRouter();
 
   return (
-    <header className=" bg-card flex justify-between border border-gray-300 ">
+    <header className="flex w-full items-center justify-between border border-gray-300 bg-card px-4">
       <Image
         src="/puffyRing.png"
         alt="Puffy Ring Logo"
@@ -28,7 +28,7 @@ function Header({ links = [], currentPage }: Props) {
         height={97}
       />
 
-      <div className="container py-2 mx-auto flex justify-end items-center">
+      <div className="flex items-center">
         <ButtonGroup className="hidden sm:flex">
           <Button
             onClick={() => router.back()}

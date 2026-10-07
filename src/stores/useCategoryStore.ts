@@ -9,7 +9,8 @@ type CategoryState = {
   setHasHydrated: (state: boolean) => void;
   addCategory: (newCategory: CategoryDetailType) => void;
   selectCategory: (newCategory: string) => void;
-  deleteCategory: (id: number | string) => void; 
+  deleteCategory: (id: number | string) => void;
+  editCategory: (id: number | string, newTitle: string) => void;
 };
 
 const useCategoryStore = create<CategoryState>()(
@@ -26,35 +27,36 @@ const useCategoryStore = create<CategoryState>()(
           }),
 
         categories: [
-          { id: 0, title: "All" },
-          { id: 1, title: "Bread" },
-          { id: 2, title: "Cake" },
-          { id: 3, title: "Coffee" },
-          { id: 4, title: "Smoothie" },
+          { id: 0, title: "All Items" },
+          { id: 1, title: "Donuts" },
+          { id: 2, title: "Hot Drinks" },
+          { id: 3, title: "Cold Drinks" },
+          { id: 4, title: "Toppings" },
+          { id: 5, title: "Combos" },
         ],
 
         activeCategory: "All",
 
-        addCategory: (newCategory) => set((oldState) => ({
-          categories: [...oldState.categories, newCategory],
-        })),
+        addCategory: (newCategory) =>
+          set((oldState) => ({
+            categories: [...oldState.categories, newCategory],
+          })),
 
         selectCategory: (newCategory) => set({ activeCategory: newCategory }),
 
         deleteCategory: (id) =>
           set((oldState) => ({
             categories: oldState.categories.filter(
-              (category) => category.id !== id
+              (category) => category.id !== id,
             ),
           })),
 
-          editCategory: (id, newTitle) =>
+        editCategory: (id, newTitle) =>
           set((oldState) => ({
             categories: oldState.categories.map((category) =>
-              category.id === id ? { ...category, title: newTitle } : category
+              category.id === id ? { ...category, title: newTitle } : category,
             ),
           })),
-      
       }; 
     },
     {
